@@ -76,8 +76,8 @@ def get_total_distance(tour: list) -> int:
 
 matriz = makeMatriz()
 n_cities = len(matriz)
-numSalesmen = 2
+numSalesmen = 1
 paths = multiple_traveling_salesmen(n_cities,numSalesmen)
 for i in paths:
     i = two_opt(i)
-    print(i, get_total_distance(i))
+    print(i,"\n", get_total_distance(i))
