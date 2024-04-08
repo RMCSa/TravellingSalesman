@@ -3,7 +3,7 @@ import math
 
 # Criação da matriz de distâncias a partir dos dados obtidos no arquivo
 distancesDict = {}
-with open('src/arquivo.txt', 'r') as arquivo:
+with open('resources/mTSP-n31-m3.txt', 'r') as arquivo:
     for linha in arquivo:
         distancesDict[int(linha[0:3])] = (int(linha[3:7]), int(linha[7:10]))
 
@@ -55,10 +55,10 @@ def cheapest_insertion_heuristic(cities: list) -> list:
 
 def multiple_traveling_salesmen(nCities: int, numSalesmen: int) -> list:
     citiesPerSalesman = [[0] for _ in range(numSalesmen)]
-    numberCitiesPerSalesman = (nCities -1)//numSalesmen;
+    #numberCitiesPerSalesman = (nCities -1)//numSalesmen;
     for i in range(1,nCities):
         citiesPerSalesman[i % numSalesmen].append(i)
-
+    
     paths = []
     for citiesForSalesman in citiesPerSalesman:
         path = cheapest_insertion_heuristic(citiesForSalesman)
@@ -79,7 +79,8 @@ def get_total_distance(tour: list) -> int:
 
 distanceMatriz = makeDistanceMatriz()
 n_cities = len(distanceMatriz)
-numSalesmen = 5
+numSalesmen = 3
 paths = multiple_traveling_salesmen(n_cities, numSalesmen)
 for i in paths:
      print(i, get_total_distance(i))
+

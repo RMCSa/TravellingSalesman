@@ -3,7 +3,7 @@ import math
 
 # Criação da matriz de distâncias a partir dos dados obtidos no arquivo
 distance = {}
-with open('src/arquivo.txt', 'r') as arquivo:
+with open('resources/mTSP-n13-m1.txt', 'r') as arquivo:
     # Use um loop para ler linha por linha
     for linha in arquivo:
         distance[int(linha[0:3])] = (int(linha[3:7]),int(linha[7:10]))
@@ -44,7 +44,6 @@ def multiple_traveling_salesmen(nCities: int, numSalesmen: int) -> list:
     for i in range(nCities):
         citiesPerSalesman[i % numSalesmen].append(i)
      #Fazer logicas para dividir as cidades entre os caixeiros aleatoriamente
-    
 
     paths = []
     #Heuristica do Vizinho mais distante para cada caixeiro
@@ -69,7 +68,7 @@ def get_total_distance(tour: list) -> int:
     
 matriz = makeMatriz()
 n_cities = len(matriz)
-numSalesmen = 1
+numSalesmen = 2
 paths = multiple_traveling_salesmen(n_cities,numSalesmen)
 for i in paths:
      print(i, get_total_distance(i))
