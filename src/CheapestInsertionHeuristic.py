@@ -1,7 +1,8 @@
 import random
 import math 
 
-# Criação da matriz de distâncias a partir dos dados obtidos no arquivo
+## Criação da matriz de distâncias a partir dos dados obtidos no arquivo
+# Criação de um dicionário de distâncias (x,y) a partir dos dados obtidos no arquivo
 distancesDict = {}
 with open('resources/mTSP-n31-m3.txt', 'r') as arquivo:
     for linha in arquivo:
