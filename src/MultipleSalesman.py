@@ -2,7 +2,7 @@ import random, math
 
 # Criação da matriz de distâncias a partir dos dados obtidos no arquivo
 distance = {}
-with open('src/arquivo.txt', 'r') as arquivo:
+with open('resources/mTSP-n13-m1.txt', 'r') as arquivo:
     # Use um loop para ler linha por linha
     for linha in arquivo:
         distance[int(linha[0:3])] = (int(linha[3:7]),int(linha[7:10]))
@@ -27,7 +27,7 @@ def nearest_neighbor_heuristic(cities: list) -> list:
     tour = []
 
 
-    start_city = random.choice(unvisited)
+    start_city = 0
     tour.append(start_city)
     unvisited.remove(start_city)
 
@@ -51,6 +51,7 @@ def multiple_traveling_salesmen(nCities: int, numSalesmen: int) -> list:
     for citiesForSalesman in citiesPerSalesman:
         path = nearest_neighbor_heuristic(citiesForSalesman)
         paths.append(path)
+
     for i in range(len(paths)):
         paths[i].append(paths[i][0])
 
@@ -62,8 +63,6 @@ def get_total_distance(tour: list) -> int:
 
     for i in range(n_cities - 1):
         total_distance += matriz[tour[i]][tour[i+1]]
-
-    total_distance = total_distance + matriz[tour[-1]][tour[0]]
     
     return total_distance
     
