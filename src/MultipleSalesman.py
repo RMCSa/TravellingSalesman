@@ -2,7 +2,7 @@ import random, math
 
 # Criação da matriz de distâncias a partir dos dados obtidos no arquivo
 distance = {}
-with open('resources/mTSP-n13-m1.txt', 'r') as arquivo:
+with open('resources/mTSP-n83-m5.txt', 'r') as arquivo:
     # Use um loop para ler linha por linha
     for linha in arquivo:
         distance[int(linha[0:3])] = (int(linha[3:7]),int(linha[7:10]))
@@ -27,7 +27,7 @@ def nearest_neighbor_heuristic(cities: list) -> list:
     tour = []
 
 
-    start_city = 0
+    start_city = unvisited[0]
     tour.append(start_city)
     unvisited.remove(start_city)
 
@@ -40,11 +40,22 @@ def nearest_neighbor_heuristic(cities: list) -> list:
 
 def multiple_traveling_salesmen(nCities: int, numSalesmen: int) -> list:
     citiesPerSalesman = [[] for _ in range(numSalesmen)]
+    cities = list(range(nCities))
     numberCitiesPerSalesman = (nCities -1)//numSalesmen;
-    for i in range(nCities):
-        citiesPerSalesman[i % numSalesmen].append(i)
-     #Fazer logicas para dividir as cidades entre os caixeiros aleatoriamente
-    
+    tourCity = nearest_neighbor_heuristic(cities) # Tour inicial com todas as cidades
+    if numSalesmen == 1: # Se houver apenas um caixeiro viajante, retorna o tour inicial
+        return [tourCity]
+    tourCity.pop() 
+
+    # Divide as cidades entre os caixeiros viajantes a partir do tour inicial
+    indice = 0 # Variavel criada para controle de indice
+    # Para cada caixeiro viajante, adiciona as cidades ao seu tour até que ele tenha o número de cidades desejado:
+    for _ in range(numSalesmen):
+        while indice == _ :
+            if len(citiesPerSalesman[indice]) < numberCitiesPerSalesman and tourCity:
+                citiesPerSalesman[indice].append(tourCity.pop(0))
+            else:
+                indice += 1
 
     paths = []
     #Heuristica do Vizinho mais proximo para cada caixeiro
