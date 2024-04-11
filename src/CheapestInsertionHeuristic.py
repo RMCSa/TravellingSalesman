@@ -1,7 +1,15 @@
 '''
     Autores: Rafael Moreira Cavalcante de Souza  - 23333
              Vitor Henrique Paes                 - 23340
-    Algoritmo de inserção mais barata feito da nossa forma para o problema dos multiplos caixeiros viajantes
+    
+    Descrição:
+    - Algoritmo de inserção mais barata feito da nossa forma para o problema dos multiplos caixeiros viajantes
+
+    Referências:
+    - Entendimento do Problema: https://www.youtube.com/watch?v=tEryMeECijE&ab_channel=PedroMunari
+    - Explicação da Heuristica de Inserção: https://www.youtube.com/watch?v=YZ-2MD1M6PY&t=643s&ab_channel=PedroMunari
+    - Estudo de Resoluções: https://www.youtube.com/watch?v=sDBe6R0axAY&ab_channel=Ponto%C3%93timo 
+    - Manipular Arquivos: https://www.youtube.com/watch?v=G-kUBX0U8IQ&ab_channel=Refatorando
 '''
 #Bibliotecas utilizadas
 import random # Biblioteca para gerar números aleatórios
@@ -75,14 +83,14 @@ def multiple_traveling_salesmen(nCities: int, numSalesmen: int) -> list:
     tourCity.pop() 
 
     # Divide as cidades entre os caixeiros viajantes a partir do tour inicial
-    indice = 0 # Variavel criada para controle de indice
+    index = 0 # Variavel criada para controle de indice
     # Para cada caixeiro viajante, adiciona as cidades ao seu tour até que ele tenha o número de cidades desejado:
-    for _ in range(numSalesmen):
-        while indice == _ :
-            if len(citiesPerSalesman[indice]) < numberCitiesPerSalesman and tourCity:
-                citiesPerSalesman[indice].append(tourCity.pop(0))
+    for number in range(numSalesmen):
+        while index == number :
+            if len(citiesPerSalesman[index]) < numberCitiesPerSalesman and tourCity:
+                citiesPerSalesman[index].append(tourCity.pop(0))
             else:
-                indice += 1
+                index += 1
 
     # A Partir dos tours criados, aplica a heurística de inserção mais barata para cada caixeiro viajante, encontrando o caminho ideal para cada um:
     tour = []

@@ -25,8 +25,7 @@ def makeMatriz() -> list:
 def nearest_neighbor_heuristic(cities: list) -> list:
     unvisited = cities[:]
     tour = []
-
-
+    
     start_city = unvisited[0]
     tour.append(start_city)
     unvisited.remove(start_city)
