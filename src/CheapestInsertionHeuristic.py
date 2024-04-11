@@ -10,15 +10,15 @@ import math # Biblioteca para funções matemáticas
 # Criação de um dicionário de distâncias (x,y) a partir dos dados obtidos no arquivo
 # (A obtencão dos dados também poderia ser armazenada em uma lista de tuplas, mas optamos por utilizar um dicionário para facilitar a busca de uma cidade específica)
 distancesDict = {}
-with open('resources/mTSP-n91-m5.txt', 'r') as arquivo:
+with open('resources/mTSP-n19-m1.txt', 'r') as arquivo:
     for linha in arquivo:
         distancesDict[int(linha[0:3])] = (int(linha[3:7]), int(linha[7:10]))
 
-# Calculo da distancia euclidiana entre duas cidades
+# Calculo da distancia euclidiana entre duas cidades:
 def getEuclideanDistance(city1, city2) -> int:
     x1, y1 = distancesDict[city1] # Coordenadas da cidade 1
     x2, y2 = distancesDict[city2] # Coordenadas da cidade 2
-    return int(math.sqrt((x1 - x2)**2 + (y1 - y2)**2)) # Retorna a distância euclidiana em int
+    return math.ceil(math.sqrt((x1 - x2)**2 + (y1 - y2)**2)) # Retorna a distância euclidiana aproximada para cima
 
 # Criação da matriz de distâncias
 def makeDistanceMatriz() -> list:
@@ -107,6 +107,7 @@ def get_total_distance(tour: list) -> int:
 
     return total_distance # Retorna a distância total
 
+# Teste do código:
 distanceMatriz = makeDistanceMatriz() # Cria a matriz de distâncias
 n_cities = len(distanceMatriz) # Número de cidades
 numSalesmen = 1 # Número de caixeiros viajantes
